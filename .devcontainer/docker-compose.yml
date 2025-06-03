@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      # Removed anonymous volume for node_modules to avoid Windows permission issues
+    ports:
+      - "3000:3000"  # React frontend
+      - "5000:5000"  # Express backend
+    depends_on:
+      - mongo
+    networks:
+      - mern
+
+  mongo:
+    image: mongo:6
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mern
+
+volumes:
+  mongo-data:
+
+networks:
+  mern:

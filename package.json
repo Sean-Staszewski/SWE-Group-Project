@@ -1,0 +1,8 @@
+{
+  "name": "mern-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "echo \"Root project - no start script\""
+  }
+}
